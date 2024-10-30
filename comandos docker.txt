@@ -1,0 +1,73 @@
+Resetar os conteiners do docker:
+
+docker stop $(docker ps -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+docker volume rm $(docker volume ls -q)
+docker network rm $(docker network ls -q)
+docker system prune -a
+
+Rodar os conteineres:
+
+docker build -t server .
+docker run -p 8000:8000 server
+
+docker build -t scraper .
+docker run -p 9000:9000 scraper
+
+
+docker build -t frontend .
+docker run -p 8001:80 frontend
+
+
+
+Builda os conteiners do compose:
+docker-compose build
+
+Roda o compose:
+docker compose up
+
+Parar todos os containers:
+docker stop $(docker ps -q)
+
+ver os nomes dos conteiners em execução
+docker ps
+
+Exportar a imagem de um conteiner no formato .tar
+docker export -o nomedoarquivo.tar nomedaimagem
+
+Carregar as imagens onde quiser:
+docker save -o arquivo.tar imagem
+docker load -i nome_do_container1.tar
+
+por ultimo crie o arquivo docker-compose.yml e copie o código:
+
+version: '3.8'
+
+services:
+  scraper:
+    image: scraper
+    ports:
+      - "9000:9000"
+    networks:
+      - rede
+
+  frontend:
+    image: frontend
+    ports:
+      - "8001:80"
+    networks:
+      - rede
+
+  server:
+    image: 93c51a360834
+    ports:
+      - "8000:8000"
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
+
+

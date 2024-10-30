@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  scraper:
+    build:
+      context: ./scraper
+    ports:
+      - "9000:9000"
+    networks:
+      - rede
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8001:80"
+    networks:
+      - rede
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - "8000:8000"
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
+

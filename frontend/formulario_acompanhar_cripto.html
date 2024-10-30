@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTC Status</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Informe os dados do acompanhamento</h1>
+    <form id="formulario-acompanhamento" action="javascript:void(0);" method="post">
+        <div>
+            <label for="alerta_valor">Alerta de valor em R$</label>
+            <select id="alerta_valor" name="acompanhamento[alerta_valor]">
+                <option value="acima">Acima de</option>
+                <option value="abaixo">Abaixo de</option>
+                <input type="number" step="0.01" id="valor" name="acompanhamento[valor]">
+            </select>
+        </div>
+
+        <div>
+            <label for="alerta_email">Alerte-me por email:</label>
+            <input type="checkbox" id="check_alerta_email">
+            <input type="email" id="email" name="acompanhamento[email]">
+        </div>
+
+        <div>
+            <label for="alerta_sms">Alerte-me por SMS:</label>
+            <input type="checkbox" id="check_alerta_sms">
+            <input type="text" id="tel" name="acompanhamento[tel]"> 
+        </div>
+
+        <div>
+            <button type="submit" id="cadastrar_acompanhamento">Monitorar</button>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+
+    <script src="formulario_script.js"></script>
+
+</body>
+</html>
